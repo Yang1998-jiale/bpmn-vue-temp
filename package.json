@@ -1,0 +1,47 @@
+{
+  "name": "bpmn-vue-temp",
+  "private": false,
+  "version": "1.0.2",
+  "type": "module",
+  "description": "基于vue3.0的bpmn流程图组件",
+  "main": "lib/index.umd.cjs",
+  "keywords": [
+    "bpmn",
+    "BPMN",
+    "bpmn-vue"
+  ],
+  "files": [
+    "lib"
+  ],
+  "exports": {
+    "./lib/style.css": "./lib/style.css",
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.5",
+    "ant-design-vue": "^4.1.2",
+    "bpmn-js": "^17.2.1",
+    "bpmn-vue": "^1.0.4",
+    "camunda-bpmn-moddle": "^7.0.1",
+    "diagram-js": "^14.3.2",
+    "diagram-js-direct-editing": "^2.1.2",
+    "less": "^4.2.0",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "bpmn-vue-temp": "^1.0.0",
+    "terser": "^5.30.3",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.6"
+  }
+}
