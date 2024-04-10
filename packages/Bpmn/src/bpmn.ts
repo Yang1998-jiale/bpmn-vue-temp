@@ -97,7 +97,6 @@ export class BPMN {
     const elementRegistry = this.modeler.get("elementRegistry");
     EVENT_TYPE.forEach((event) => {
       this.addEventListener(event, (elementAction: any) => {
-        console.log(elementAction);
         const element = elementAction.element || elementAction.context.element;
 
         if (!element && !elementAction.type) {
