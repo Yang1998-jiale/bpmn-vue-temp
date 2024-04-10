@@ -38,7 +38,7 @@ devDependencies:
     specifier: ^5.0.4
     version: 5.0.4(vite@5.2.8)(vue@3.4.21)
   bpmn-vue-temp:
-    specifier: ^1.0.1
+    specifier: ^1.0.0
     version: 1.0.1(typescript@5.4.4)
   terser:
     specifier: ^5.30.3
