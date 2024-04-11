@@ -1,7 +1,7 @@
 {
   "name": "bpmn-vue-temp",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "基于vue3.0的bpmn流程图组件",
   "main": "lib/index.umd.cjs",
@@ -11,7 +11,7 @@
     "bpmn-vue"
   ],
   "files": [
-    "lib"
+    "lib","@/types"
   ],
   "exports": {
     "./lib/style.css": "./lib/style.css",
@@ -29,7 +29,6 @@
     "@types/node": "^20.12.5",
     "ant-design-vue": "^4.1.2",
     "bpmn-js": "^17.2.1",
-    "bpmn-vue": "^1.0.4",
     "camunda-bpmn-moddle": "^7.0.1",
     "diagram-js": "^14.3.2",
     "diagram-js-direct-editing": "^2.1.2",
