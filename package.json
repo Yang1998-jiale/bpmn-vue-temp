@@ -1,7 +1,7 @@
 {
   "name": "bpmn-vue-temp",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.5",
   "type": "module",
   "description": "基于vue3.0的bpmn流程图组件",
   "main": "lib/index.umd.cjs",
@@ -12,15 +12,17 @@
   ],
   "files": [
     "lib",
-    "@/types"
+    "@types"
   ],
   "exports": {
     "./lib/style.css": "./lib/style.css",
     ".": {
+      "types": "./@types/index.d.ts",
       "import": "./lib/index.js",
       "require": "./lib/index.umd.cjs"
     }
   },
+  "types": "./@types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

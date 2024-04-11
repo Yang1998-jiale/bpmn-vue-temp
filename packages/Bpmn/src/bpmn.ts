@@ -233,6 +233,17 @@ export class BPMN {
     return this.modeler.importXML(string);
   }
 
+  exportXML() {
+    const rootElement = this.getModeler().get("canvas").getRootElement();
+    this.getXML()
+      .then((response:any) => {
+        download(response.xml, rootElement.id || "process", "bpmn");
+      })
+      .catch((err: unknown) => {
+        console.warn(err);
+      });
+  }
+
   setType(value: string | undefined) {
     this.shapeType = value;
   }
@@ -250,3 +261,19 @@ export class BPMN {
     this.shapeType = undefined;
   }
 }
+
+//文本下载
+const download = (data: string, filename: string, type: string): void => {
+  const blob = new Blob([data]);
+  const tempLink = document.createElement("a"); // 创建a标签
+  const href = window.URL.createObjectURL(blob); // 创建下载的链接
+  //filename
+  const fileName = `${filename}.${type}`;
+  tempLink.href = href;
+  tempLink.target = "_blank";
+  tempLink.download = fileName;
+  document.body.appendChild(tempLink);
+  tempLink.click(); // 点击下载
+  document.body.removeChild(tempLink); // 下载完成移除元素
+  window.URL.revokeObjectURL(href); // 释放掉blob对象
+};

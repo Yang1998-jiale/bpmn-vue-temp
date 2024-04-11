@@ -7,11 +7,20 @@
 <template>
   <div class="bpmn-page">
     <div :id="bpmnID" class="modeler-container"></div>
+
+    <div class="bpmn-operation">
+      <div title="导出XML" @click="exportXML">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-zu1359" />
+        </svg>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { reactive, onMounted, watch, onBeforeUnmount } from "vue";
 import translate from "./i18n";
+import { Upload } from "ant-design-vue";
 // import activitiModdel from './activiti-moddel.json'
 import createDefaultBpmnXml from "./defaultBpmnXml";
 import "bpmn-js/dist/assets/diagram-js.css";
@@ -69,7 +78,7 @@ onMounted(() => {
       moddleExtensions: {
         camunda: camundaModdleDescriptor,
       },
-      ...props.options
+      ...props.options,
     });
   } else {
     bpmnStore.initModeler({
@@ -87,7 +96,7 @@ onMounted(() => {
         // activiti: activitiModdel,
         camunda: camundaModdleDescriptor,
       },
-      ...props.options
+      ...props.options,
     });
   }
   bpmnStore
@@ -112,21 +121,8 @@ watch(
       return;
     }
     let businessObject = bpmnStore.getBusinessObject() || undefined;
-    if (
-      [
-        "bpmn:StartEvent",
-        "bpmn:ExclusiveGateway",
-        "bpmn:SequenceFlow",
-      ].includes(bpmnStore.getShapeType())
-    ) {
-      emits("select:element", {
-        businessObject,
-        shapeType: bpmnStore.getShapeType(),
-      });
-      return;
-    }
     emits("select:element", {
-      businessObject: undefined,
+      businessObject,
       shapeType: bpmnStore.getShapeType(),
     });
   },
@@ -139,6 +135,10 @@ onBeforeUnmount(() => {
   bpmnStore.resetData();
 });
 
+function exportXML() {
+  bpmnStore.exportXML();
+}
+
 defineExpose({
   bpmnStore,
 });
@@ -147,6 +147,7 @@ defineExpose({
 .bpmn-page {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .bjs-powered-by {
@@ -218,5 +219,20 @@ defineExpose({
 
 .default-input {
   margin-bottom: 10px;
+}
+
+.bpmn-operation {
+  position: absolute;
+  bottom: 2%;
+  left: 1%;
+  width: 100px;
+  height: 50px;
+
+  svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  // background-color: red;
 }
 </style>

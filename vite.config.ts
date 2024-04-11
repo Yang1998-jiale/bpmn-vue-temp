@@ -2,7 +2,7 @@
  * @Author: yjl
  * @Date: 2024-04-08 17:00:14
  * @LastEditors: yjl
- * @LastEditTime: 2024-04-10 15:31:21
+ * @LastEditTime: 2024-04-11 16:25:48
  * @Description: 描述
  */
 import { defineConfig } from "vite";
@@ -44,4 +44,7 @@ export default defineConfig({
       },
     },
   },
+  server:{
+    port: 9527 // 将3000更改为所需的端口号
+  }
 });

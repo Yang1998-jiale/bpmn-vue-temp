@@ -2,11 +2,12 @@
  * @Author: yjl
  * @Date: 2024-04-08 17:20:25
  * @LastEditors: yjl
- * @LastEditTime: 2024-04-10 13:40:01
+ * @LastEditTime: 2024-04-11 16:55:10
  * @Description: 描述
  */
 // import "ant-design-vue/dist/antd.css";
 import BpmnVue, { useBpmn } from "./Bpmn/index.ts";
+import "./iconfont.js"
 
 // const components = newMap;
 const components = [BpmnVue];

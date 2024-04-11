@@ -78,7 +78,7 @@ PaletteProvider.prototype.getPaletteEntries = function (_element) {
     };
   }
 
-  function _createSubprocess(event) {
+  function createSubprocess(event) {
     var subProcess = elementFactory.createShape({
       type: 'bpmn:SubProcess',
       x: 0,
@@ -100,7 +100,7 @@ PaletteProvider.prototype.getPaletteEntries = function (_element) {
     });
   }
 
-  function _createParticipant(event) {
+  function createParticipant(event) {
     create.start(event, elementFactory.createParticipantShape());
   }
 
@@ -155,12 +155,12 @@ PaletteProvider.prototype.getPaletteEntries = function (_element) {
       'bpmn-icon-start-event-none',
       translate('Create StartEvent'),
     ),
-    // 'create.intermediate-event': createAction(
-    //   'bpmn:IntermediateThrowEvent',
-    //   'event',
-    //   'bpmn-icon-intermediate-event-none',
-    //   translate('Create Intermediate/Boundary Event'),
-    // ),
+    'create.intermediate-event': createAction(
+      'bpmn:IntermediateThrowEvent',
+      'event',
+      'bpmn-icon-intermediate-event-none',
+      translate('Create Intermediate/Boundary Event'),
+    ),
     'create.end-event': createAction(
       'bpmn:EndEvent',
       'event',
@@ -173,60 +173,60 @@ PaletteProvider.prototype.getPaletteEntries = function (_element) {
       'bpmn-icon-gateway-none',
       translate('Create Gateway'),
     ),
-    // 'create.task': createAction(
-    //   'bpmn:Task',
-    //   'activity',
-    //   'bpmn-icon-task',
-    //   translate('Create Task'),
-    // ),
+    'create.task': createAction(
+      'bpmn:Task',
+      'activity',
+      'bpmn-icon-task',
+      translate('Create Task'),
+    ),
     'create.user-task': createAction(
       'bpmn:UserTask',
       'activity',
       'bpmn-icon-user-task',
       translate('Create User Task'),
     ),
-    // 'create.service-task': createAction(
-    //   'bpmn:ServiceTask',
-    //   'activity',
-    //   'bpmn-icon-service-task',
-    //   translate('Create Service Task'),
-    // ),
-    // 'create.data-object': createAction(
-    //   'bpmn:DataObjectReference',
-    //   'data-object',
-    //   'bpmn-icon-data-object',
-    //   translate('Create DataObjectReference'),
-    // ),
-    // 'create.data-store': createAction(
-    //   'bpmn:DataStoreReference',
-    //   'data-store',
-    //   'bpmn-icon-data-store',
-    //   translate('Create DataStoreReference'),
-    // ),
-    // 'create.subprocess-expanded': {
-    //   group: 'activity',
-    //   className: 'bpmn-icon-subprocess-expanded',
-    //   title: translate('Create expanded SubProcess'),
-    //   action: {
-    //     dragstart: createSubprocess,
-    //     click: createSubprocess,
-    //   },
-    // },
-    // 'create.participant-expanded': {
-    //   group: 'collaboration',
-    //   className: 'bpmn-icon-participant',
-    //   title: translate('Create Pool/Participant'),
-    //   action: {
-    //     dragstart: createParticipant,
-    //     click: createParticipant,
-    //   },
-    // },
-    // 'create.group': createAction(
-    //   'bpmn:Group',
-    //   'artifact',
-    //   'bpmn-icon-group',
-    //   translate('Create Group'),
-    // ),
+    'create.service-task': createAction(
+      'bpmn:ServiceTask',
+      'activity',
+      'bpmn-icon-service-task',
+      translate('Create Service Task'),
+    ),
+    'create.data-object': createAction(
+      'bpmn:DataObjectReference',
+      'data-object',
+      'bpmn-icon-data-object',
+      translate('Create DataObjectReference'),
+    ),
+    'create.data-store': createAction(
+      'bpmn:DataStoreReference',
+      'data-store',
+      'bpmn-icon-data-store',
+      translate('Create DataStoreReference'),
+    ),
+    'create.subprocess-expanded': {
+      group: 'activity',
+      className: 'bpmn-icon-subprocess-expanded',
+      title: translate('Create expanded SubProcess'),
+      action: {
+        dragstart: createSubprocess,
+        click: createSubprocess,
+      },
+    },
+    'create.participant-expanded': {
+      group: 'collaboration',
+      className: 'bpmn-icon-participant',
+      title: translate('Create Pool/Participant'),
+      action: {
+        dragstart: createParticipant,
+        click: createParticipant,
+      },
+    },
+    'create.group': createAction(
+      'bpmn:Group',
+      'artifact',
+      'bpmn-icon-group',
+      translate('Create Group'),
+    ),
   });
 
   return actions;
