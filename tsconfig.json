@@ -14,6 +14,8 @@
     "noEmit": true,
     "jsx": "preserve",
 
+    "allowSyntheticDefaultImports": true, // 允许没有导出的模块中导入
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -22,5 +24,5 @@
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue","packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx", "packages/**/*.vue", "./*.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"]
+  "exclude": ["node_modules", "dist", "**/*.js"]
 }
