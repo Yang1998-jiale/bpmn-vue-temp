@@ -33,13 +33,17 @@ let props = defineProps({
     type: Boolean,
     default: false,
   },
+  options: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 const defaultProcessIdAndName = "1";
 let emits = defineEmits(["select:element", "data:change"]);
 
 const bpmnStore = reactive(
   new BPMN({
-    dataChange: (_oldVal:any, newVal:any) => {
+    dataChange: (_oldVal: any, newVal: any) => {
       emits("data:change", { businessObject: newVal });
     },
   })
@@ -61,16 +65,11 @@ onMounted(() => {
           moveCanvas: ["value", ""], //禁用拖动整个流程图
           move: ["value", ""], //禁用单个图形拖动
         },
-        // customPalette,
-        // paletteProvider,
-        // CustomContextPadProvider,
-        // customContextPad,
-        // customRender,
       ],
       moddleExtensions: {
-        // activiti: activitiModdel,
         camunda: camundaModdleDescriptor,
       },
+      ...props.options
     });
   } else {
     bpmnStore.initModeler({
@@ -88,6 +87,7 @@ onMounted(() => {
         // activiti: activitiModdel,
         camunda: camundaModdleDescriptor,
       },
+      ...props.options
     });
   }
   bpmnStore

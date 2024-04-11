@@ -27,21 +27,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/node": "^20.12.5",
-    "ant-design-vue": "^4.1.2",
     "bpmn-js": "^17.2.1",
     "camunda-bpmn-moddle": "^7.0.1",
     "diagram-js": "^14.3.2",
-    "diagram-js-direct-editing": "^2.1.2",
-    "less": "^4.2.0",
-    "vue": "^3.4.21"
+    "diagram-js-direct-editing": "^2.1.2"
   },
   "devDependencies": {
+    "@types/node": "^20.12.5",
     "@vitejs/plugin-vue": "^5.0.4",
-    "bpmn-vue-temp": "^1.0.3",
+    "ant-design-vue": "^4.1.2",
+    "less": "^4.2.0",
     "terser": "^5.30.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vue": "^3.4.21",
     "vue-tsc": "^2.0.6"
   }
 }
