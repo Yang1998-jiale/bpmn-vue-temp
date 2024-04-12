@@ -1,14 +1,16 @@
+
+
 # bpmnjs+Vue3
 
 这是基于 bpmnjs 和 vue3 的组件,实现流程图绘制和流程图解析功能
-
+@[TOC](目录)
 # 使用方法
 
 ```javascript
 npm i bpmn-vue-temp -save
 ```
 
-## 全局引入
+## 全局引入(支持按需引入)
 
 ```javascript
 import { createApp } from "vue";
@@ -20,8 +22,9 @@ import BpmnVueTemp from "bpmn-vue-temp";
 //全局引入
 createApp(App).use(BpmnVueTemp).mount("#app");
 ```
+# 工作流画布组件
 
-## 按需引入
+
 
 ### 1.组件方式
 
@@ -51,7 +54,7 @@ bpmn.initModeler({
 });
 ```
 
-# 组件参数
+
 
 ```javascript
 /*
@@ -82,7 +85,7 @@ function selectElement(info) {
 </template>
 ```
 
-# API
+## API
 
 ```javascript
 /**
@@ -127,3 +130,6 @@ exportSVG()
 //重置数据
 resetData()
 ```
+
+
+# 天地图地图选点组价
