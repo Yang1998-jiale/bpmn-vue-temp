@@ -48,7 +48,7 @@ export class BPMN {
    * 7.通过节点的类型获取对应的抽屉组件集合并保存到store的activeBindDefine
    */
   //刷新状态
-  refreshState(elementRegistry: any, elementAction: any) {
+  private refreshState(elementRegistry: any, elementAction: any) {
     if (!this || !elementAction) {
       return;
     }
@@ -236,12 +236,36 @@ export class BPMN {
   exportXML() {
     const rootElement = this.getModeler().get("canvas").getRootElement();
     this.getXML()
-      .then((response:any) => {
+      .then((response: any) => {
         download(response.xml, rootElement.id || "process", "bpmn");
       })
       .catch((err: unknown) => {
         console.warn(err);
       });
+  }
+
+  exportSVG() {
+    const rootElement = this.getModeler().get("canvas").getRootElement();
+    this.getSVG()
+      .then((response:any) => {
+        download(response.svg, rootElement.id || "process", "svg");
+      })
+      .catch((err: unknown) => {
+        console.warn(err);
+      });
+  }
+
+  getSVG() {
+    return new Promise((resolve, reject) => {
+      this.getModeler()
+        .saveSVG()
+        .then((response: { svg: string }) => {
+          resolve(response);
+        })
+        .catch((err: unknown) => {
+          reject(err);
+        });
+    });
   }
 
   setType(value: string | undefined) {

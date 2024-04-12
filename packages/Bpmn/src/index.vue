@@ -9,9 +9,13 @@
     <div :id="bpmnID" class="modeler-container"></div>
 
     <div class="bpmn-operation">
-      <div title="导出XML" @click="exportXML">
+      <div
+        :title="item.label"
+        @click="item.action"
+        v-for="item in state.operation"
+      >
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-zu1359" />
+          <use :xlink:href="item.icon" />
         </svg>
       </div>
     </div>
@@ -20,7 +24,6 @@
 <script lang="ts" setup>
 import { reactive, onMounted, watch, onBeforeUnmount } from "vue";
 import translate from "./i18n";
-import { Upload } from "ant-design-vue";
 // import activitiModdel from './activiti-moddel.json'
 import createDefaultBpmnXml from "./defaultBpmnXml";
 import "bpmn-js/dist/assets/diagram-js.css";
@@ -33,23 +36,20 @@ import { BPMN } from "./bpmn";
 // camunda描述json
 import camundaModdleDescriptor from "camunda-bpmn-moddle/resources/camunda";
 
-let props = defineProps({
-  bpmnID: {
-    type: String,
-    default: "modeler-container",
-  },
-  isReadOnly: {
-    type: Boolean,
-    default: false,
-  },
-  options: {
-    type: Object,
-    default: () => ({}),
-  },
+interface Props {
+  bpmnID: string | undefined;
+  isReadOnly: boolean;
+  options: any;
+  operation: any;
+}
+let props = withDefaults(defineProps<Props>(), {
+  bpmnID: "modeler-container",
+  isReadOnly: false,
+  options: {},
+  operation: [],
 });
 const defaultProcessIdAndName = "1";
 let emits = defineEmits(["select:element", "data:change"]);
-
 const bpmnStore = reactive(
   new BPMN({
     dataChange: (_oldVal: any, newVal: any) => {
@@ -57,6 +57,53 @@ const bpmnStore = reactive(
     },
   })
 );
+
+const state = reactive({
+  operation: [
+    {
+      label: "导入XML",
+      icon: "#icon-shangchuan",
+      action: importXML,
+    },
+    {
+      label: "导出XML",
+      icon: "#icon-zu1359",
+      action: exportXML,
+    },
+    {
+      label: "导出SVG",
+      icon: "#icon-zu920",
+      action: () => {
+        bpmnStore.exportSVG();
+      },
+    },
+    {
+      label: "放大",
+      icon: "#icon-fangda",
+      action: () => {
+        state.zoom = Math.floor(state.zoom * 100 + 0.1 * 100) / 100;
+        bpmnStore.getModeler().get("canvas").zoom(state.zoom);
+      },
+    },
+    {
+      label: "缩小",
+      icon: "#icon-suoxiao",
+      action: () => {
+        state.zoom = Math.floor(state.zoom * 100 - 0.1 * 100) / 100;
+        bpmnStore.getModeler().get("canvas").zoom(state.zoom);
+      },
+    },
+    {
+      label: "还原并居中",
+      icon: "#icon-quxiaoquanping",
+      action: () => {
+        state.zoom = 1;
+        bpmnStore.getModeler().get("canvas").zoom("fit-viewport", "auto");
+      },
+    },
+  ],
+  zoom: 1,
+});
 
 onMounted(() => {
   if (props.isReadOnly) {
@@ -111,6 +158,9 @@ onMounted(() => {
     .catch((err: any) => {
       console.warn("importFail errors ", err);
     });
+  if (props.operation.length) {
+    state.operation = props.operation;
+  }
 });
 watch(
   () => bpmnStore.activeElementID,
@@ -137,6 +187,21 @@ onBeforeUnmount(() => {
 
 function exportXML() {
   bpmnStore.exportXML();
+}
+
+function importXML() {
+  let fileUpload: any = document.createElement("input");
+  fileUpload.type = "file";
+  fileUpload.click();
+  fileUpload.onchange = () => {
+    let file = fileUpload.files[0];
+    let reader = new FileReader();
+    reader.onload = () => {
+      let xml: any = reader.result;
+      bpmnStore.importXML(xml);
+    };
+    reader.readAsText(file);
+  };
 }
 
 defineExpose({
@@ -225,12 +290,14 @@ defineExpose({
   position: absolute;
   bottom: 2%;
   left: 1%;
-  width: 100px;
-  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 
   svg {
     width: 30px;
     height: 30px;
+    margin-right: 16px;
     cursor: pointer;
   }
   // background-color: red;
