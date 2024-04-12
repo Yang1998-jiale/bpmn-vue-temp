@@ -3,7 +3,7 @@
 # bpmnjs+Vue3
 
 这是基于 bpmnjs 和 vue3 的组件,实现流程图绘制和流程图解析功能
-@[TOC](目录)
+[TOC](目录)
 # 使用方法
 
 ```javascript
