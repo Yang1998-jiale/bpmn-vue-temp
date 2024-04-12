@@ -3,7 +3,7 @@
 # bpmnjs+Vue3
 
 这是基于 bpmnjs 和 vue3 的组件,实现流程图绘制和流程图解析功能
-[TOC](目录)
+
 # 使用方法
 
 ```javascript
@@ -25,7 +25,7 @@ createApp(App).use(BpmnVueTemp).mount("#app");
 # 工作流画布组件
 
 
-
+## 使用方式
 ### 1.组件方式
 
 ```javascript
@@ -132,4 +132,4 @@ resetData()
 ```
 
 
-# 天地图地图选点组价
+# 天地图地图选点组件
