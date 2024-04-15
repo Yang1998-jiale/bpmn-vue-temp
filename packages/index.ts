@@ -2,17 +2,18 @@
  * @Author: yjl
  * @Date: 2024-04-08 17:20:25
  * @LastEditors: yjl
- * @LastEditTime: 2024-04-11 16:55:10
+ * @LastEditTime: 2024-04-15 16:37:24
  * @Description: 描述
  */
 // import "ant-design-vue/dist/antd.css";
 import BpmnVue, { useBpmn } from "./Bpmn/index.ts";
-import "./iconfont.js"
+import "./iconfont.js";
 
 // const components = newMap;
 const components = [BpmnVue];
 // 用于按需导入
-export { BpmnVue, useBpmn };
+export const BpmnCanvas = BpmnVue;
+export const useBpmnCanvas = useBpmn;
 
 // 定义 install 方法
 const install = function (Vue: any) {

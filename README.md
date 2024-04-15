@@ -21,32 +21,42 @@ import "bpmn-vue-temp/lib/style.css";
 import BpmnVueTemp from "bpmn-vue-temp";
 //全局引入
 createApp(App).use(BpmnVueTemp).mount("#app");
+
+
 ```
 # 工作流画布组件
 
 
 ## 使用方式
+按需引入时组件名叫BpmnCanvas,全局引用时组件名为Bpmn-Vue
 ### 1.组件方式
 
 ```javascript
 import { ref } from "vue";
-import { BpmnVue } from "bpmn-vue-temp";
+import { BpmnCanvas } from "bpmn-vue-temp";
 let bpmnRef = ref();
 
+<template>
+  <div class="box" id="bpmn">
+    <BpmnCanvas :bpmnID="'test'" ref="bpmnRef" @select:element="selectElement" />
+  </div>
+</template>
+
+
+// 全局引入使用
 <template>
   <div class="box" id="bpmn">
     <Bpmn-Vue :bpmnID="'test'" ref="bpmnRef" @select:element="selectElement" />
   </div>
 </template>
-
 ```
 
 ### 2.自定义方式
 
 ```javascript
-import { useBpmn } from "bpmn-vue-temp";
+import { useBpmnCanvas } from "bpmn-vue-temp";
 
-let bpmn = useBpmn();
+let bpmn = useBpmnCanvas();
 bpmn.initModeler({
   container: document.getElementById("bpmn"),
   additionalModules:{},

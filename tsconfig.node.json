@@ -7,5 +7,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true
   },
+  "extends": "./tsconfig.json", // 拓展 tsconfig.json 的配置
   "include": ["vite.config.ts"]
 }

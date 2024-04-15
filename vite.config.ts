@@ -2,17 +2,25 @@
  * @Author: yjl
  * @Date: 2024-04-08 17:00:14
  * @LastEditors: yjl
- * @LastEditTime: 2024-04-15 10:52:41
+ * @LastEditTime: 2024-04-15 15:56:57
  * @Description: 描述
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
+import dts from "vite-plugin-dts";
 const resolve = (dir: any) => path.join(__dirname, dir);
 
 export default defineConfig({
-  plugins: [vue(), visualizer()],
+  plugins: [
+    vue(),
+    visualizer(),
+    dts({
+      outputDir:'./lib',
+      entryRoot:'./packages',
+    }),
+  ],
   resolve: {
     alias: {
       "@": resolve("src"),

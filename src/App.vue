@@ -2,12 +2,13 @@
  * @Author: yjl
  * @Date: 2024-04-08 17:00:14
  * @LastEditors: yjl
- * @LastEditTime: 2024-04-11 15:54:47
+ * @LastEditTime: 2024-04-15 16:32:01
  * @Description: 描述
 -->
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { BpmnVue } from "../packages";
+// import { BpmnVueTemp } from "../packages";
+// import { BpmnVue } from "../packages";
 let bpmnRef = ref();
 onMounted(() => {
   console.log(bpmnRef.value);
