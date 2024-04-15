@@ -2,16 +2,17 @@
  * @Author: yjl
  * @Date: 2024-04-08 17:00:14
  * @LastEditors: yjl
- * @LastEditTime: 2024-04-11 16:25:48
+ * @LastEditTime: 2024-04-15 10:52:41
  * @Description: 描述
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
+import { visualizer } from "rollup-plugin-visualizer";
 const resolve = (dir: any) => path.join(__dirname, dir);
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), visualizer()],
   resolve: {
     alias: {
       "@": resolve("src"),
@@ -37,14 +38,16 @@ export default defineConfig({
     }, // rollup打包配置
 
     minify: "terser",
+    // 压缩时忽略警告
     terserOptions: {
       compress: {
-        drop_console: true,
         drop_debugger: true,
+        drop_console: true,
       },
     },
+    chunkSizeWarningLimit: 2000,
   },
-  server:{
-    port: 9527 // 将3000更改为所需的端口号
-  }
+  server: {
+    port: 9527, // 将3000更改为所需的端口号
+  },
 });
