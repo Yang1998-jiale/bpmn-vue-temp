@@ -38,7 +38,7 @@ jobs:
       
       # 发布
       - name: Running Publish
-        run: pnpm publish --no-git-checks
+        run: pnpm publish
         env:
           # NPM_TOKEN is access token
          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
