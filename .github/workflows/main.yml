@@ -2,8 +2,7 @@ name: CI
 on:
   push:
     branches:
-	  # 触发ci/cd的代码分支
-      - master
+      - feauter
 jobs:
   build:
     # 指定操作系统
@@ -39,7 +38,7 @@ jobs:
       
       # 发布
       - name: Running Publish
-        run: pnpm publish --no-git-checks
+        run: pnpm publish
         env:
           # NPM_TOKEN is access token
          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
