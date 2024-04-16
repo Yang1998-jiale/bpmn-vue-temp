@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - feauter
+      - dev
 jobs:
   build:
     # 指定操作系统
